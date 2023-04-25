@@ -62,6 +62,7 @@ float get_sensor_speed(void)
 	HAL_TIM_IC_Start_DMA(&htim2, TIM_CHANNEL_3, (U32*)ic3buf, IC_BUF_SIZE);
 	HAL_TIM_IC_Start_DMA(&htim2, TIM_CHANNEL_4, (U32*)ic4buf, IC_BUF_SIZE);
 	*/
+	return 0;
 }
 
 

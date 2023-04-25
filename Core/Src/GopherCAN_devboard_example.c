@@ -4,6 +4,7 @@
 #include "GopherCAN_devboard_example.h"
 #include "main.h"
 #include <stdio.h>
+#include "pulse_sensor.h"
 
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
@@ -73,9 +74,12 @@ void main_loop()
 	// send the current tick over UART every second
 	if (HAL_GetTick() - last_print_hb >= PRINTF_HB_MS_BETWEEN)
 	{
+		HAL_GPIO_TogglePin(HBeat_GPIO_Port, HBeat_Pin);
 		printf("Current tick: %lu\n", HAL_GetTick());
 		last_print_hb = HAL_GetTick();
 	}
+
+	check_pulse_sensors();
 
 	// DEBUG
 	static U8 last_led = 0;

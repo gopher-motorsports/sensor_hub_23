@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "GopherCAN_devboard_example.h"
 #include "gopher_sense.h"
+#include "pulse_sensor.h"
 
 /* USER CODE END Includes */
 
@@ -51,12 +52,25 @@ CAN_HandleTypeDef hcan1;
 
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim10;
+DMA_HandleTypeDef hdma_tim2_up_ch3;
 
 UART_HandleTypeDef huart1;
 
 osThreadId main_taskHandle;
 osThreadId buffer_handlingHandle;
 /* USER CODE BEGIN PV */
+#define IC_TIMER &htim2
+#define IC_CONVERSION_RATIO 2.0f //(X pulses / 1 sec) * (60 sec / 1 min) * (1 rev / 30 pulses) = RPM, so conversion ration would be 60/30 = 2.
+#define DMA_STOPPED_TIMEOUT_MS 60
+#define USE_VAR_SS true
+#define IC_LOW_SAMPLES 100
+#define IC_HIGH_SAMPLES 1000
+#define MIN_SAMPLES 5
+
+static float storeLocation1 = 0;
+static float storeLocation2 = 0;
+
+static int setupError = 0;
 
 /* USER CODE END PV */
 
@@ -133,6 +147,30 @@ int main(void)
   gsense_init(&hcan1, &hadc1, &hadc2, NULL, &htim10,
 		  GSense_GPIO_Port, GSense_Pin);
   // TODO init speed sensors
+
+  setupError = setup_pulse_sensor_vss(
+		  IC_TIMER,
+ 		  TIM_CHANNEL_4,
+ 		  IC_CONVERSION_RATIO,
+ 		  &storeLocation1,
+		  DMA_STOPPED_TIMEOUT_MS,
+ 		  USE_VAR_SS,
+ 		  IC_LOW_SAMPLES,
+ 		  IC_HIGH_SAMPLES,
+		  MIN_SAMPLES
+   );
+
+//  setup_pulse_sensor_vss(
+//		  IC_TIMER,
+// 		  TIM_CHANNEL_2,
+// 		  IC_CONVERSION_RATIO,
+// 		  &storeLocation2,
+//		  DMA_STOPPED_TIMEOUT_MS,
+// 		  USE_VAR_SS,
+// 		  IC_LOW_SAMPLES,
+// 		  IC_HIGH_SAMPLES,
+//		  MIN_SAMPLES
+//   );
 
   set_all_param_sending(TRUE);
 
@@ -443,7 +481,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 80;
+  htim2.Init.Prescaler = 8-1;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 0xffffffff;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -565,8 +603,12 @@ static void MX_DMA_Init(void)
 
   /* DMA controller clock enable */
   __HAL_RCC_DMA2_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
+  /* DMA1_Stream1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
   /* DMA2_Stream0_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);

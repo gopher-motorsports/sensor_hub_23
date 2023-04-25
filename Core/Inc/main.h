@@ -57,6 +57,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define TIM_PIN_3_Pin GPIO_PIN_0
+#define TIM_PIN_3_GPIO_Port GPIOA
+#define TIM_PIN_4_Pin GPIO_PIN_1
+#define TIM_PIN_4_GPIO_Port GPIOA
+#define TIM_PIN_2_Pin GPIO_PIN_2
+#define TIM_PIN_2_GPIO_Port GPIOA
+#define TIM_PIN_1_Pin GPIO_PIN_3
+#define TIM_PIN_1_GPIO_Port GPIOA
 #define GSense_Pin GPIO_PIN_12
 #define GSense_GPIO_Port GPIOB
 #define HBeat_Pin GPIO_PIN_13
