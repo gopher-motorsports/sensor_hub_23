@@ -4,53 +4,31 @@ module_name: "example_sensor_hub"
 buckets:
     bucket_0:
         # NOTE: frequency will be converted to an integer number of ms for a delay
-        frequency_hz: 250
+        frequency_hz: 100
         parameters:
             # these must directly be a variable defined in GopherCAN
-            dam_chan_1:
+            exhaustTemp_C:
                 ADC: ADC1_IN11
-                sensor: linear_pos_sensor_50
+                sensor: exhaust_temp_sensor
                 samples_buffered: 2
-                
-            dam_chan_2:
+            fuelPressure_kPa:
                 ADC: ADC1_IN12
-                sensor: linear_pos_sensor_50
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
-                
-            dam_chan_3:
+            leftRadWaterTempIn_C:
                 ADC: ADC1_IN13
-                sensor: linear_pos_sensor_50
+                sensor: temp_sensor
                 samples_buffered: 2
-
-    bucket_1:
-        frequency_hz: 1000
-        parameters:
-            dam_chan_4:
+            leftRadWaterTempOut_C:
                 ADC: ADC1_IN10
-                sensor: linear_pos_sensor_50
+                sensor: temp_sensor
                 samples_buffered: 2
-                
-            dam_chan_5:
+            shockPosRearLeft_mm:
                 ADC: ADC2_IN12
                 sensor: linear_pos_sensor_50
                 samples_buffered: 2
-                
-            dam_chan_6:
-                ADC: ADC2_IN7
-                sensor: linear_pos_sensor_50
+            wheelSpeedRearLeft_mph:
+                ADC: NON_ADC
+                sensor: NON_ADC
                 samples_buffered: 2
-                
-    bucket_2:
-        frequency_hz: 50
-        parameters:
-            dam_chan_7:
-                ADC: ADC2_IN6
-                sensor: linear_pos_sensor_50
-                samples_buffered: 2
-                
-            dam_chan_8:
-                ADC: ADC2_IN14
-                sensor: linear_pos_sensor_50
-                samples_buffered: 2
-                
 
