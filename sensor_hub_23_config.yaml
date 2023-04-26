@@ -13,7 +13,7 @@ buckets:
                 samples_buffered: 2
             fuelPressure_kPa:
                 ADC: ADC1_IN12
-                sensor: pressure_sensor_absolute
+                sensor: pressure_sensor_sealed_gauge
                 samples_buffered: 2
             leftRadWaterTempIn_C:
                 ADC: ADC1_IN13
