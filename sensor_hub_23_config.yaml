@@ -7,13 +7,14 @@ buckets:
         frequency_hz: 100
         parameters:
             # these must directly be a variable defined in GopherCAN
+            # Listed in order of their pins in the sensor hub board side connector
             exhaustTemp_C:
                 ADC: ADC1_IN11
                 sensor: exhaust_temp_sensor
                 samples_buffered: 2
-            fuelPressure_kPa:
+            shockPosRearLeft_mm:
                 ADC: ADC1_IN12
-                sensor: pressure_sensor_sealed_gauge
+                sensor: linear_pos_sensor_50
                 samples_buffered: 2
             leftRadWaterTempIn_C:
                 ADC: ADC1_IN13
@@ -23,9 +24,9 @@ buckets:
                 ADC: ADC1_IN10
                 sensor: temp_sensor
                 samples_buffered: 2
-            shockPosRearLeft_mm:
-                ADC: ADC2_IN12
-                sensor: linear_pos_sensor_50
+            fuelPressure_kPa:
+                ADC: ADC1_IN15
+                sensor: pressure_sensor_sealed_gauge
                 samples_buffered: 2
             wheelSpeedRearLeft_mph:
                 ADC: NON_ADC
