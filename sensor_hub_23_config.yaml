@@ -8,23 +8,23 @@ buckets:
         parameters:
             # Listed in order of their pins in the sensor hub board side connector
             airLinePressure_psi:
-                ADC: ADC2_IN12
+                ADC: ADC1_IN11
                 sensor: pressure_sensor_sealed_gauge
                 samples_buffered: 2
             airTankPressure_psi:
-                ADC: ADC2_IN12
+                ADC: ADC1_IN12
                 sensor: air_tank_pressure_sensor
                 samples_buffered: 2
             manifoldTemp_C:
-                ADC: ADC1_IN10
+                ADC: ADC1_IN13
                 sensor: combined_temp_sensor
                 samples_buffered: 2
             manifoldPressure_kPa:
-                ADC: ADC1_IN13
+                ADC: ADC1_IN10
                 sensor: combined_pressure_sensor
                 samples_buffered: 2
             shockPosRearRight_mm:
-                ADC: ADC1_IN11
+                ADC: ADC1_IN15
                 sensor: linear_pos_sensor_50
                 samples_buffered: 2
             wheelSpeedRearRight_mph:
