@@ -4,53 +4,31 @@ module_name: "example_sensor_hub"
 buckets:
     bucket_0:
         # NOTE: frequency will be converted to an integer number of ms for a delay
-        frequency_hz: 250
+        frequency_hz: 100
         parameters:
             # these must directly be a variable defined in GopherCAN
-            dam_chan_1:
+            shockPosRearRight_mm:
                 ADC: ADC1_IN11
                 sensor: linear_pos_sensor_50
                 samples_buffered: 2
-                
-            dam_chan_2:
+            wheelSpeedRearRight_mph:
                 ADC: ADC1_IN12
-                sensor: linear_pos_sensor_50
+                sensor: NON_ADC
                 samples_buffered: 2
-                
-            dam_chan_3:
+            manifoldPressure_kPa:
                 ADC: ADC1_IN13
-                sensor: linear_pos_sensor_50
+                sensor: combined_pressure_sensor
                 samples_buffered: 2
-
-    bucket_1:
-        frequency_hz: 1000
-        parameters:
-            dam_chan_4:
+            manifoldTemp_C:
                 ADC: ADC1_IN10
-                sensor: linear_pos_sensor_50
+                sensor: combined_temp_sensor
                 samples_buffered: 2
-                
-            dam_chan_5:
+            airTankPressure_psi:
                 ADC: ADC2_IN12
-                sensor: linear_pos_sensor_50
+                sensor: air_tank_pressure_sensor
                 samples_buffered: 2
-                
-            dam_chan_6:
-                ADC: ADC2_IN7
-                sensor: linear_pos_sensor_50
+            airLinePressure_psi:
+                ADC: NON_ADC
+                sensor: pressure_sensor_sealed_gauge
                 samples_buffered: 2
-                
-    bucket_2:
-        frequency_hz: 50
-        parameters:
-            dam_chan_7:
-                ADC: ADC2_IN6
-                sensor: linear_pos_sensor_50
-                samples_buffered: 2
-                
-            dam_chan_8:
-                ADC: ADC2_IN14
-                sensor: linear_pos_sensor_50
-                samples_buffered: 2
-                
 
