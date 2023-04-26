@@ -42,8 +42,6 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	{
 		init_error();
 	}
-
-	init_speed_sensor();
 }
 
 
