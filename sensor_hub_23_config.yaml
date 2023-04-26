@@ -5,18 +5,40 @@ buckets:
     bucket_0:
         frequency_hz: 100
         parameters:
-            dam_chan_4:
+            brakePressureFront_psi:
                 ADC: ADC1_IN10
                 sensor: linear_pos_sensor_50
                 samples_buffered: 2
-                
-            dam_chan_5:
+            brakePressureRear_psi:
                 ADC: ADC2_IN12
                 sensor: linear_pos_sensor_50
                 samples_buffered: 2
-                
-            dam_chan_6:
+            brakeTempFrontLeft_C:
                 ADC: ADC2_IN7
                 sensor: linear_pos_sensor_50
+                samples_buffered: 2
+            brakeTempFrontRight_C:
+                ADC: ADC2_IN7
+                sensor: linear_pos_sensor_50
+                samples_buffered: 2
+            steeringAngle_deg:
+                ADC: ADC2_IN7
+                sensor: linear_pos_sensor_50
+                samples_buffered: 2
+            shockPosFrontLeft_mm:
+                ADC: ADC2_IN7
+                sensor: linear_pos_sensor_50
+                samples_buffered: 2
+            shockPosFrontRight_mm:
+                ADC: ADC2_IN7
+                sensor: linear_pos_sensor_50
+                samples_buffered: 2
+            wheelSpeedFrontLeft_mph:
+                ADC: NON_ADC
+                sensor: NON_ADC
+                samples_buffered: 2
+            wheelSpeedFrontRight_mph:
+                ADC: NON_ADC
+                sensor: NON_ADC
                 samples_buffered: 2
 
