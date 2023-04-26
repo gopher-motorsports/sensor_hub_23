@@ -4,10 +4,15 @@
 #include "GopherCAN_devboard_example.h"
 #include "main.h"
 #include <stdio.h>
+#include "pulse_sensor.h"
+#include "gopher_sense.h"
+
+#define CONVERSION_RATIO 22 // Counted number of gaps in the rear brake rotor
+#define HDMA_CHANNEL 1 // hdma value dma is going to use
+#define DMA_STOPPED_TIMEOUT_MS 60
 
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
-
 
 // Use this to define what module this board will be
 #define THIS_MODULE_ID PLM_ID
@@ -16,7 +21,7 @@ CAN_HandleTypeDef* example_hcan;
 
 // some global variables for examples
 U8 last_button_state = 0;
-
+float wheel_speed_rear_right;
 
 // the CAN callback function used in this example
 static void change_led_state(U8 sender, void* UNUSED_LOCAL_PARAM, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
@@ -43,7 +48,14 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 		init_error();
 	}
 
-	init_speed_sensor();
+	setup_pulse_sensor(
+			&htim2,
+			TIM_CHANNEL_1,
+			HDMA_CHANNEL,
+			CONVERSION_RATIO,
+			&wheel_speed_rear_right,
+			DMA_STOPPED_TIMEOUT_MS
+			);
 }
 
 
@@ -76,6 +88,10 @@ void main_loop()
 		printf("Current tick: %lu\n", HAL_GetTick());
 		last_print_hb = HAL_GetTick();
 	}
+
+	check_pulse_sensors();
+
+	update_and_queue_param_float(&wheelSpeedRearLeft_mph, wheel_speed_rear_left);
 
 	// DEBUG
 	static U8 last_led = 0;
