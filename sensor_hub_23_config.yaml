@@ -6,29 +6,29 @@ buckets:
         # NOTE: frequency will be converted to an integer number of ms for a delay
         frequency_hz: 100
         parameters:
-            # these must directly be a variable defined in GopherCAN
-            shockPosRearRight_mm:
-                ADC: ADC1_IN11
-                sensor: linear_pos_sensor_50
-                samples_buffered: 2
-            wheelSpeedRearRight_mph:
-                ADC: ADC1_IN12
-                sensor: NON_ADC
-                samples_buffered: 2
-            manifoldPressure_kPa:
-                ADC: ADC1_IN13
-                sensor: combined_pressure_sensor
-                samples_buffered: 2
-            manifoldTemp_C:
-                ADC: ADC1_IN10
-                sensor: combined_temp_sensor
+            # Listed in order of their pins in the sensor hub board side connector
+            airLinePressure_psi:
+                ADC: ADC2_IN12
+                sensor: pressure_sensor_sealed_gauge
                 samples_buffered: 2
             airTankPressure_psi:
                 ADC: ADC2_IN12
                 sensor: air_tank_pressure_sensor
                 samples_buffered: 2
-            airLinePressure_psi:
+            manifoldTemp_C:
+                ADC: ADC1_IN10
+                sensor: combined_temp_sensor
+                samples_buffered: 2
+            manifoldPressure_kPa:
+                ADC: ADC1_IN13
+                sensor: combined_pressure_sensor
+                samples_buffered: 2
+            shockPosRearRight_mm:
+                ADC: ADC1_IN11
+                sensor: linear_pos_sensor_50
+                samples_buffered: 2
+            wheelSpeedRearRight_mph:
                 ADC: NON_ADC
-                sensor: pressure_sensor_sealed_gauge
+                sensor: NON_ADC
                 samples_buffered: 2
 

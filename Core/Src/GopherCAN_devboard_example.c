@@ -13,6 +13,7 @@
 
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
+extern TIM_HandleTypeDef htim2;
 
 // Use this to define what module this board will be
 #define THIS_MODULE_ID PLM_ID
@@ -91,7 +92,7 @@ void main_loop()
 
 	check_pulse_sensors();
 
-	update_and_queue_param_float(&wheelSpeedRearLeft_mph, wheel_speed_rear_left);
+	update_and_queue_param_float(&wheelSpeedRearRight_mph, wheel_speed_rear_right);
 
 	// DEBUG
 	static U8 last_led = 0;
