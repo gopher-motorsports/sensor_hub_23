@@ -8,8 +8,8 @@
 #include "gopher_sense.h"
 
 #define CONVERSION_RATIO 22 // Counted number of gaps in the rear brake rotor
-#define HDMA_CHANNEL 1 // hdma value dma is going to use
-#define DMA_STOPPED_TIMEOUT_MS 60
+#define HDMA_CHANNEL 4 // hdma value dma is going to use
+#define DMA_STOPPED_TIMEOUT_MS 1000
 
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
@@ -50,7 +50,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 
 	setup_pulse_sensor(
 			&htim2,
-			TIM_CHANNEL_1,
+			TIM_CHANNEL_4,
 			HDMA_CHANNEL,
 			CONVERSION_RATIO,
 			&wheel_speed_rear_left,
