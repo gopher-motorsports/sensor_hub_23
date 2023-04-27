@@ -8,8 +8,8 @@
 #include "gopher_sense.h"
 
 #define CONVERSION_RATIO 22 // Counted number of gaps in the rear brake rotor
-#define HDMA_CHANNEL_1 1 // hdma value dma is going to use
-#define HDMA_CHANNEL_2 2 // TODO: This is prob wrong, verify
+#define HDMA_CHANNEL_1 2 // hdma value dma is going to use
+#define HDMA_CHANNEL_2 3 // TODO: This is prob wrong, verify
 #define DMA_STOPPED_TIMEOUT_MS 60
 
 // the HAL_CAN struct. This example only works for a single CAN bus
