@@ -26,7 +26,7 @@ buckets:
                 samples_buffered: 2
             fuelPressure_kPa:
                 ADC: ADC1_IN15
-                sensor: pressure_sensor_sealed_gauge
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
             wheelSpeedRearLeft_mph:
                 ADC: NON_ADC
