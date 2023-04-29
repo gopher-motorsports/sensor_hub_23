@@ -13,7 +13,7 @@
 #define DMA_STOPPED_TIMEOUT_MS 1000
 #define LOW_PULSES_PER_SECOND 1 // 15 mph, when we only take 5 samples per dma check
 #define HIGH_PULSES_PER_SECOND 300 // Don't expect to reach this but we don't want to take that many samples
-#define MIN_SAMPLES 1
+#define MIN_SAMPLES 2
 #define MAX_SAMPLES 20
 
 // the HAL_CAN struct. This example only works for a single CAN bus
@@ -33,6 +33,8 @@ float wheel_speed_front_left;
 // the CAN callback function used in this example
 static void change_led_state(U8 sender, void* UNUSED_LOCAL_PARAM, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
 static void init_error(void);
+
+int setup1, setup2;
 
 // init
 //  What needs to happen on startup in order to run GopherCAN
@@ -55,7 +57,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 		init_error();
 	}
 
-	setup_pulse_sensor_vss(
+	setup1 = setup_pulse_sensor_vss(
 			&htim2,
 			TIM_CHANNEL_4,
 			CONVERSION_RATIO,
@@ -67,7 +69,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			MIN_SAMPLES,
 			MAX_SAMPLES
 			);
-	setup_pulse_sensor_vss(
+	setup2 = setup_pulse_sensor_vss(
 			&htim2,
 			TIM_CHANNEL_3,
 			CONVERSION_RATIO,
