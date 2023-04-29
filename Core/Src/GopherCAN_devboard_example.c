@@ -7,10 +7,14 @@
 #include "pulse_sensor.h"
 #include "gopher_sense.h"
 
-#define CONVERSION_RATIO 2.0f // Counted number of gaps in the rear brake rotor
+#define CONVERSION_RATIO (float)CALCULATE_MPH_CONVERSION_RATIO(30.0f, 7.8f) // Conversion ration from frequency of pulses to mph
 #define HDMA_CHANNEL_4 2 // hdma value dma is going to use
 #define HDMA_CHANNEL_3 3 // TODO: This is prob wrong, verify
 #define DMA_STOPPED_TIMEOUT_MS 1000
+#define LOW_PULSES_PER_SECOND 1 // 15 mph, when we only take 5 samples per dma check
+#define HIGH_PULSES_PER_SECOND 300 // Don't expect to reach this but we don't want to take that many samples
+#define MIN_SAMPLES 1
+#define MAX_SAMPLES 20
 
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
@@ -51,21 +55,29 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 		init_error();
 	}
 
-	setup_pulse_sensor(
+	setup_pulse_sensor_vss(
 			&htim2,
 			TIM_CHANNEL_4,
-			HDMA_CHANNEL_4,
 			CONVERSION_RATIO,
 			&wheel_speed_front_right,
-			DMA_STOPPED_TIMEOUT_MS
+			DMA_STOPPED_TIMEOUT_MS,
+			true,
+			LOW_PULSES_PER_SECOND,
+			HIGH_PULSES_PER_SECOND,
+			MIN_SAMPLES,
+			MAX_SAMPLES
 			);
-	setup_pulse_sensor(
+	setup_pulse_sensor_vss(
 			&htim2,
 			TIM_CHANNEL_3,
-			HDMA_CHANNEL_3,
 			CONVERSION_RATIO,
 			&wheel_speed_front_left,
-			DMA_STOPPED_TIMEOUT_MS
+			DMA_STOPPED_TIMEOUT_MS,
+			true,
+			LOW_PULSES_PER_SECOND,
+			HIGH_PULSES_PER_SECOND,
+			MIN_SAMPLES,
+			MAX_SAMPLES
 			);
 }
 
