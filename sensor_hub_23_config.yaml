@@ -12,7 +12,7 @@ buckets:
                 samples_buffered: 2
             shockPosFrontLeft_mm:
                 ADC: ADC1_IN12
-                sensor: linear_pos_sensor_50
+                sensor: front_left_shock_pos
                 samples_buffered: 2
             brakeTempFrontRight_C:
                 ADC: ADC1_IN13
@@ -20,7 +20,7 @@ buckets:
                 samples_buffered: 2
             shockPosFrontRight_mm:
                 ADC: ADC1_IN10
-                sensor: linear_pos_sensor_50
+                sensor: front_right_shock_pos
                 samples_buffered: 2
             brakePressureFront_psi:
                 ADC: ADC1_IN15
