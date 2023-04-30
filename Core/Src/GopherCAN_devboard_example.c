@@ -29,6 +29,7 @@ extern TIM_HandleTypeDef htim2;
 U8 last_button_state = 0;
 float wheel_speed_front_right;
 float wheel_speed_front_left;
+bool error = false;
 
 // the CAN callback function used in this example
 static void change_led_state(U8 sender, void* UNUSED_LOCAL_PARAM, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
@@ -57,7 +58,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 		init_error();
 	}
 
-	setup1 = setup_pulse_sensor_vss(
+	if (setup_pulse_sensor_vss(
 			&htim2,
 			TIM_CHANNEL_4,
 			CONVERSION_RATIO,
@@ -68,8 +69,10 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			HIGH_PULSES_PER_SECOND,
 			MIN_SAMPLES,
 			MAX_SAMPLES
-			);
-	setup2 = setup_pulse_sensor_vss(
+			) != NO_PULSE_SENSOR_ISSUES) {
+		init_error();
+	}
+	if (setup_pulse_sensor_vss(
 			&htim2,
 			TIM_CHANNEL_3,
 			CONVERSION_RATIO,
@@ -80,7 +83,9 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			HIGH_PULSES_PER_SECOND,
 			MIN_SAMPLES,
 			MAX_SAMPLES
-			);
+			) != NO_PULSE_SENSOR_ISSUES) {
+		init_error();
+	}
 }
 
 
@@ -108,13 +113,19 @@ void main_loop()
 	static U32 last_print_hb = 0;
 
 	// send the current tick over UART every second
-	if (HAL_GetTick() - last_print_hb >= PRINTF_HB_MS_BETWEEN)
+	if (!error && (HAL_GetTick() - last_print_hb >= PRINTF_HB_MS_BETWEEN))
 	{
 		printf("Current tick: %lu\n", HAL_GetTick());
 		last_print_hb = HAL_GetTick();
+		HAL_GPIO_TogglePin(HBeat_GPIO_Port, HBeat_Pin);
 	}
 
-	check_pulse_sensors();
+	if (check_pulse_sensors() != NO_PULSE_SENSOR_ISSUES) {
+		error = true;
+		HAL_GPIO_WritePin(HBeat_GPIO_Port, HBeat_Pin, 1);
+	} else {
+		error = false;
+	}
 
 	update_and_queue_param_float(&wheelSpeedFrontRight_mph, wheel_speed_front_right);
 	update_and_queue_param_float(&wheelSpeedFrontLeft_mph, wheel_speed_front_left);
