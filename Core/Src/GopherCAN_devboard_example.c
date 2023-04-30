@@ -11,8 +11,9 @@
 #define HDMA_CHANNEL 4 // hdma value dma is going to use
 #define DMA_STOPPED_TIMEOUT_MS 1000
 #define LOW_PULSES_PER_SECOND 1 // 15 mph, when we only take 5 samples per dma check
-#define HIGH_PULSES_PER_SECOND 1000 // 1500 mph, don't expect to reach this but we don't want to take that many samples
+#define HIGH_PULSES_PER_SECOND 300 // Don't expect to reach this but we don't want to take that many samples
 #define MIN_SAMPLES 1
+#define MAX_SAMPLES 20
 
 // the HAL_CAN struct. This example only works for a single CAN bus
 CAN_HandleTypeDef* example_hcan;
@@ -26,6 +27,7 @@ extern TIM_HandleTypeDef htim2;
 // some global variables for examples
 U8 last_button_state = 0;
 float wheel_speed_rear_right;
+bool error;
 
 // the CAN callback function used in this example
 static void change_led_state(U8 sender, void* UNUSED_LOCAL_PARAM, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
@@ -52,18 +54,20 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 		init_error();
 	}
 
-	setup_pulse_sensor(
+	if (setup_pulse_sensor_vss(
 			&htim2,
 			TIM_CHANNEL_4,
-			HDMA_CHANNEL,
 			CONVERSION_RATIO,
 			&wheel_speed_rear_right,
-			DMA_STOPPED_TIMEOUT_MS
-//			true,
-//			LOW_PULSES_PER_SECOND,
-//			HIGH_PULSES_PER_SECOND,
-//			MIN_SAMPLES
-			);
+			DMA_STOPPED_TIMEOUT_MS,
+			true,
+			LOW_PULSES_PER_SECOND,
+			HIGH_PULSES_PER_SECOND,
+			MIN_SAMPLES,
+			MAX_SAMPLES
+			) != NO_PULSE_SENSOR_ISSUES) {
+		init_error();
+	}
 }
 
 
@@ -97,7 +101,12 @@ void main_loop()
 		last_print_hb = HAL_GetTick();
 	}
 
-	check_pulse_sensors();
+	if (check_pulse_sensors() != NO_PULSE_SENSOR_ISSUES) {
+		error = true;
+		HAL_GPIO_WritePin(HBeat_GPIO_Port, HBeat_Pin, 1);
+	} else {
+		error = false;
+	}
 
 	update_and_queue_param_float(&wheelSpeedRearRight_mph, wheel_speed_rear_right);
 
