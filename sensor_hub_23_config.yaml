@@ -5,22 +5,22 @@ buckets:
     bucket_0:
         frequency_hz: 100
         parameters:
-            #Listed in order of their pins in the sensor hub board side connector
+            # Listed in order of their pins in the sensor hub board side connector
             brakeTempFrontLeft_C:
                 ADC: ADC1_IN11
-                sensor: temp_sensor
+                sensor: brake_temp_sensor
                 samples_buffered: 2
             shockPosFrontLeft_mm:
                 ADC: ADC1_IN12
-                sensor: linear_pos_sensor_50
+                sensor: front_left_shock_pos
                 samples_buffered: 2
             brakeTempFrontRight_C:
                 ADC: ADC1_IN13
-                sensor: temp_sensor
+                sensor: brake_temp_sensor
                 samples_buffered: 2
             shockPosFrontRight_mm:
                 ADC: ADC1_IN10
-                sensor: linear_pos_sensor_50
+                sensor: front_right_shock_pos
                 samples_buffered: 2
             brakePressureFront_psi:
                 ADC: ADC1_IN15
