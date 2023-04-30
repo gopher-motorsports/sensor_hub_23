@@ -24,7 +24,7 @@ buckets:
                 samples_buffered: 2
             brakePressureFront_psi:
                 ADC: ADC1_IN15
-                sensor: pressure_sensor_sealed_gauge
+                sensor: brake_pressure_sensor
                 samples_buffered: 2
             steeringAngle_deg:
                 ADC: ADC1_IN7
@@ -32,7 +32,7 @@ buckets:
                 samples_buffered: 2
             brakePressureRear_psi:
                 ADC: ADC1_IN6
-                sensor: pressure_sensor_sealed_gauge
+                sensor: brake_pressure_sensor
                 samples_buffered: 2
             wheelSpeedFrontRight_mph:
                 ADC: NON_ADC
