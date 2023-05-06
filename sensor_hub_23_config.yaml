@@ -24,7 +24,7 @@ buckets:
                 ADC: ADC1_IN10
                 sensor: temp_sensor
                 samples_buffered: 2
-            fuelPressure_kPa:
+            fuelPressure_psi:
                 ADC: ADC1_IN15
                 sensor: pressure_sensor_absolute
                 samples_buffered: 2
