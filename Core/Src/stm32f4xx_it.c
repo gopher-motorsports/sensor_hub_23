@@ -94,6 +94,8 @@ void HardFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+	 HAL_GPIO_WritePin(FAULT_LED_GPIO_Port, FAULT_LED_Pin, 1);
+	 NVIC_SystemReset();
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
