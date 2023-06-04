@@ -6,35 +6,19 @@ buckets:
         frequency_hz: 100
         parameters:
             # Listed in order of their pins in the sensor hub board side connector
-            steeringAngle_deg:
+            shockPosRearLeft_mm:
                 ADC: ADC1_IN11
-                sensor: steering_angle_sensor
+                sensor: linear_pos_sensor_50
                 samples_buffered: 2
-            brakePressureRear_psi:
+            shockPosRearRight_mm:
                 ADC: ADC1_IN12
-                sensor: brake_pressure_sensor
+                sensor: linear_pos_sensor_50
                 samples_buffered: 2
-            brakeTempFrontLeft_C:
-                ADC: ADC1_IN13
-                sensor: brake_temp_sensor
-                samples_buffered: 2
-            brakeTempFrontRight_C:
-                ADC: ADC1_IN10
-                sensor: brake_temp_sensor
-                samples_buffered: 2
-            shockPosFrontRight_mm:
-                ADC: ADC1_IN15
-                sensor: front_right_shock_pos
-                samples_buffered: 2
-            shockPosFrontLeft_mm:
-                ADC: ADC1_IN7
-                sensor: front_left_shock_pos
-                samples_buffered: 2
-            wheelSpeedFrontRight_mph:
+            wheelSpeedRearLeft_mph:
                 ADC: NON_ADC
                 sensor: NON_ADC
                 samples_buffered: 2
-            wheelSpeedFrontLeft_mph:
+            wheelSpeedRearRight_mph:
                 ADC: NON_ADC
                 sensor: NON_ADC
                 samples_buffered: 2

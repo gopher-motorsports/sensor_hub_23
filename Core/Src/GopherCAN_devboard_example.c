@@ -7,9 +7,9 @@
 #include "pulse_sensor.h"
 #include "gopher_sense.h"
 
-#define CONVERSION_RATIO (float)CALCULATE_MPH_CONVERSION_RATIO(30.0f, 7.8f) // Conversion ration from frequency of pulses to mph
-#define HDMA_CHANNEL_4 2 // hdma value dma is going to use
-#define HDMA_CHANNEL_3 3 // TODO: This is prob wrong, verify
+#define CONVERSION_RATIO (float)CALCULATE_MPH_CONVERSION_RATIO(22.0f, 7.8f) // Conversion ration from frequency of pulses to mph
+#define HDMA_CHANNEL_4 4 // hdma value dma is going to use
+#define HDMA_CHANNEL_3 3
 #define DMA_STOPPED_TIMEOUT_MS 1000
 #define LOW_PULSES_PER_SECOND 1 // 15 mph, when we only take 5 samples per dma check
 #define HIGH_PULSES_PER_SECOND 300 // Don't expect to reach this but we don't want to take that many samples
@@ -21,14 +21,14 @@ CAN_HandleTypeDef* example_hcan;
 extern TIM_HandleTypeDef htim2;
 
 // Use this to define what module this board will be
-#define THIS_MODULE_ID SH_F_ID
+#define THIS_MODULE_ID SH_R_ID
 #define PRINTF_HB_MS_BETWEEN 1000
 
 
 // some global variables for examples
 U8 last_button_state = 0;
-float wheel_speed_front_right;
-float wheel_speed_front_left;
+float wheel_speed_rear_right;
+float wheel_speed_rear_left;
 bool error = false;
 
 // the CAN callback function used in this example
@@ -62,7 +62,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			&htim2,
 			TIM_CHANNEL_4,
 			CONVERSION_RATIO,
-			&wheel_speed_front_right,
+			&wheel_speed_rear_right,
 			DMA_STOPPED_TIMEOUT_MS,
 			true,
 			LOW_PULSES_PER_SECOND,
@@ -76,7 +76,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			&htim2,
 			TIM_CHANNEL_3,
 			CONVERSION_RATIO,
-			&wheel_speed_front_left,
+			&wheel_speed_rear_left,
 			DMA_STOPPED_TIMEOUT_MS,
 			true,
 			LOW_PULSES_PER_SECOND,
@@ -127,8 +127,8 @@ void main_loop()
 		error = false;
 	}
 
-	update_and_queue_param_float(&wheelSpeedFrontRight_mph, wheel_speed_front_right);
-	update_and_queue_param_float(&wheelSpeedFrontLeft_mph, wheel_speed_front_left);
+	update_and_queue_param_float(&wheelSpeedRearLeft_mph, wheel_speed_rear_right);
+	update_and_queue_param_float(&wheelSpeedRearRight_mph, wheel_speed_rear_left);
 
 	// DEBUG
 	static U8 last_led = 0;
