@@ -30,6 +30,10 @@ buckets:
                 ADC: ADC1_IN7
                 sensor: front_left_shock_pos
                 samples_buffered: 2
+            pittoTubePressure_psi:
+                ADC: ADC1_IN6
+                sensor: differential_pressure_sensor
+                samples_buffered: 2
             wheelSpeedFrontRight_mph:
                 ADC: NON_ADC
                 sensor: NON_ADC
