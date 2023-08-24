@@ -27,8 +27,19 @@ buckets:
                 ADC: ADC1_IN15
                 sensor: linear_pos_sensor_50
                 samples_buffered: 2
+            rightAuxTemp_C:
+                ADC: ADC1_IN7
+                sensor: linear_pos_sensor_50
+                samples_buffered: 2
+            rightShroudPitot_inH2O:
+                ADC: ADC1_IN6
+                sensor: linear_pos_sensor_50
+                samples_buffered: 2
             wheelSpeedRearRight_mph:
                 ADC: NON_ADC
                 sensor: NON_ADC
                 samples_buffered: 2
-
+            # rightFlowRate_LPerMin:
+            #     ADC: NON_ADC
+            #     sensor: NON_ADC
+            #     samples_buffered: 2

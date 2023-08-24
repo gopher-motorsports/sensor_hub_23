@@ -68,6 +68,20 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			) != NO_PULSE_SENSOR_ISSUES) {
 		init_error();
 	}
+//	if (setup_pulse_sensor_vss(
+//			&htim2,
+//			TIM_CHANNEL_3,
+//			CONVERSION_RATIO,
+//			&rightFlowRate_LPerMin,
+//			DMA_STOPPED_TIMEOUT_MS,
+//			true,
+//			LOW_PULSES_PER_SECOND,
+//			HIGH_PULSES_PER_SECOND,
+//			MIN_SAMPLES,
+//			MAX_SAMPLES
+//			) != NO_PULSE_SENSOR_ISSUES) {
+//		init_error();
+//	}
 }
 
 
