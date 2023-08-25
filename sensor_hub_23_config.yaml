@@ -29,7 +29,7 @@ buckets:
                 samples_buffered: 2
             rightAuxTemp_C:
                 ADC: ADC1_IN7
-                sensor: linear_pos_sensor_50
+                sensor: temp_sensor
                 samples_buffered: 2
             rightShroudPitot_inH2O:
                 ADC: ADC1_IN6
