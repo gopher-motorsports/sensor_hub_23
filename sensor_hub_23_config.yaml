@@ -33,7 +33,7 @@ buckets:
                 samples_buffered: 2
             rightShroudPitot_inH2O:
                 ADC: ADC1_IN6
-                sensor: linear_pos_sensor_50
+                sensor: differential_pressure_sensor
                 samples_buffered: 2
             wheelSpeedRearRight_mph:
                 ADC: NON_ADC
