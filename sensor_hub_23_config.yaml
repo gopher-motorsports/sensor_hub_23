@@ -28,7 +28,15 @@ buckets:
                 ADC: ADC1_IN15
                 sensor: pressure_sensor_absolute
                 samples_buffered: 2
+            leftShroudPitot_inH2O:
+                ADC: ADC1_IN7
+                sensor: differential_pressure_sensor
+                samples_buffered: 2
             wheelSpeedRearLeft_mph:
+                ADC: NON_ADC
+                sensor: NON_ADC
+                samples_buffered: 2
+            leftFlowRate_LPerMin:
                 ADC: NON_ADC
                 sensor: NON_ADC
                 samples_buffered: 2
