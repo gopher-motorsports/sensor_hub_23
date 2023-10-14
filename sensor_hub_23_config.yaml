@@ -31,9 +31,13 @@ buckets:
                 ADC: ADC1_IN7
                 sensor: temp_sensor
                 samples_buffered: 2
-            rightShroudPitot_inH2O:
+            # rightShroudPitot_inH2O:
+            #     ADC: ADC1_IN6
+            #     sensor: differential_pressure_sensor
+            #     samples_buffered: 2
+            brakeTempRearRight_C:
                 ADC: ADC1_IN6
-                sensor: differential_pressure_sensor
+                sensor: brake_temp_sensor
                 samples_buffered: 2
             wheelSpeedRearRight_mph:
                 ADC: NON_ADC
