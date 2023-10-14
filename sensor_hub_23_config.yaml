@@ -28,6 +28,10 @@ buckets:
                 ADC: ADC1_IN15
                 sensor: pressure_sensor_absolute
                 samples_buffered: 2
+            leftAuxPressure_psi:
+                ADC: ADC1_IN7
+                sensor: pressure_sensor_absolute
+                samples_buffered: 2
             leftShroudPitot_inH2O:
                 ADC: ADC1_IN6       # pin 6 -> ADC1_IN7 is not currently working correctly
                 sensor: differential_pressure_sensor
