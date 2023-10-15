@@ -27,6 +27,7 @@ CAN_HandleTypeDef* example_hcan;
 U8 last_button_state = 0;
 float wheel_speed_rear_left;
 float left_flow_rate;
+float left_flow_hz;
 bool error = false;
 
 // the CAN callback function used in this example
@@ -53,34 +54,35 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	{
 		init_error();
 	}
-
-	if (setup_pulse_sensor_vss(
-			&htim2,
-			TIM_CHANNEL_4,
-			CONVERSION_RATIO,
-			&wheel_speed_rear_left,
-			DMA_STOPPED_TIMEOUT_MS,
-			true,
-			LOW_PULSES_PER_SECOND,
-			HIGH_PULSES_PER_SECOND,
-			MIN_SAMPLES,
-			MAX_SAMPLES
-			) != NO_PULSE_SENSOR_ISSUES) {
-		init_error();
-	}
+//
+//	if (setup_pulse_sensor_vss(
+//			&htim2,
+//			TIM_CHANNEL_4,
+//			CONVERSION_RATIO,
+//			&wheel_speed_rear_left,
+//			DMA_STOPPED_TIMEOUT_MS,
+//			true,
+//			LOW_PULSES_PER_SECOND,
+//			HIGH_PULSES_PER_SECOND,
+//			MIN_SAMPLES,
+//			MAX_SAMPLES
+//			) != NO_PULSE_SENSOR_ISSUES) {
+//		init_error();
+//	}
 
 	// Flow sensor setup - currently configured for wheel speed for testing until sensor is installed
-	if (setup_pulse_sensor_vss(
+	if (setup_pulse_sensor_vss_freq(
 			&htim2,
-			TIM_CHANNEL_3,
-			CONVERSION_RATIO,
+			TIM_CHANNEL_4,
+			4.975,
 			&left_flow_rate,
 			DMA_STOPPED_TIMEOUT_MS,
 			true,
 			LOW_PULSES_PER_SECOND,
 			HIGH_PULSES_PER_SECOND,
 			MIN_SAMPLES,
-			MAX_SAMPLES
+			MAX_SAMPLES,
+			&left_flow_hz
 			) != NO_PULSE_SENSOR_ISSUES) {
 		init_error();
 	}
@@ -123,8 +125,9 @@ void main_loop()
 		error = false;
 	}
 
-	update_and_queue_param_float(&wheelSpeedRearLeft_mph, wheel_speed_rear_left);
-	update_and_queue_param_float(&leftFlowRate_LPerMin, left_flow_rate);
+	update_and_queue_param_float(&wheelSpeedRearLeft_mph, left_flow_rate);
+	update_and_queue_param_float(&leftFlowRate_GPerSec, wheel_speed_rear_left);
+	update_and_queue_param_float(&leftFlowRateFreq_hz, wheel_speed_rear_left);
 
 	// DEBUG
 	static U8 last_led = 0;
