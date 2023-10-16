@@ -125,9 +125,9 @@ void main_loop()
 		error = false;
 	}
 
-	update_and_queue_param_float(&wheelSpeedRearLeft_mph, left_flow_rate);
-	update_and_queue_param_float(&leftFlowRate_GPerSec, wheel_speed_rear_left);
-	update_and_queue_param_float(&leftFlowRateFreq_hz, wheel_speed_rear_left);
+//	update_and_queue_param_float(&wheelSpeedRearLeft_mph, left_flow_rate);
+	update_and_queue_param_float(&leftFlowRate_GPerSec, left_flow_rate);
+	update_and_queue_param_float(&leftFlowRateFreq_hz, left_flow_hz);
 
 	// DEBUG
 	static U8 last_led = 0;
