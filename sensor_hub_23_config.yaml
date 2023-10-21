@@ -15,11 +15,11 @@ buckets:
                 ADC: ADC1_IN12
                 sensor: air_tank_pressure_sensor
                 samples_buffered: 2
-            manifoldTemp_C:
+            rightRadAirTempIn_C:
                 ADC: ADC1_IN13
                 sensor: combined_temp_sensor
                 samples_buffered: 2
-            manifoldPressure_kPa:
+            rightRadAirPresIn_kPa:
                 ADC: ADC1_IN10
                 sensor: combined_pressure_sensor
                 samples_buffered: 2
@@ -27,7 +27,11 @@ buckets:
                 ADC: ADC1_IN15
                 sensor: linear_pos_sensor_50
                 samples_buffered: 2
-            rightAuxTemp_C:
+            # rightAuxTemp_C:
+            #     ADC: ADC1_IN7
+            #     sensor: temp_sensor
+            #     samples_buffered: 2
+            rightRadAirTempOut_C:
                 ADC: ADC1_IN7
                 sensor: temp_sensor
                 samples_buffered: 2
