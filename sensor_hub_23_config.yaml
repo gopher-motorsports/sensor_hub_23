@@ -27,11 +27,11 @@ buckets:
                 sensor: brake_pressure_sensor
                 samples_buffered: 2
             steeringAngle_deg:
-                ADC: ADC1_IN7
+                ADC: ADC1_IN14
                 sensor: steering_angle_sensor
                 samples_buffered: 2
             brakePressureRear_psi:
-                ADC: ADC1_IN14
+                ADC: ADC1_IN7
                 sensor: brake_pressure_sensor
                 samples_buffered: 2
             wheelSpeedFrontRight_mph:
