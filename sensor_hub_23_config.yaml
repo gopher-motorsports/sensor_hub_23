@@ -39,10 +39,10 @@ buckets:
             #     ADC: ADC1_IN6
             #     sensor: differential_pressure_sensor
             #     samples_buffered: 2
-            brakeTempRearRight_C:
-                ADC: ADC1_IN6
-                sensor: brake_temp_sensor
-                samples_buffered: 2
+            # brakeTempRearRight_C:
+            #     ADC: ADC1_IN7
+            #     sensor: brake_temp_sensor
+            #     samples_buffered: 2
             wheelSpeedRearRight_mph:
                 ADC: NON_ADC
                 sensor: NON_ADC
