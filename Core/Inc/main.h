@@ -73,8 +73,6 @@ void Error_Handler(void);
 #define PS_02_GPIO_Port GPIOA
 #define PS_01_Pin GPIO_PIN_3
 #define PS_01_GPIO_Port GPIOA
-#define VS_07_Pin GPIO_PIN_6
-#define VS_07_GPIO_Port GPIOA
 #define VS_06_Pin GPIO_PIN_7
 #define VS_06_GPIO_Port GPIOA
 #define VS_08_Pin GPIO_PIN_4
