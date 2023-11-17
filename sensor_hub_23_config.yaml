@@ -6,27 +6,27 @@ buckets:
         frequency_hz: 250
         parameters:
             # these must directly be a variable defined in GopherCAN
-            front1SuspensionLoadCell_N:
+            rear1SuspensionLoadCell_N:
                 ADC: ADC1_IN11
                 sensor: suspension_load_cell
                 samples_buffered: 2
-            front2SuspensionLoadCell_N:
+            rear2SuspensionLoadCell_N:
                 ADC: ADC1_IN12
                 sensor: suspension_load_cell
                 samples_buffered: 2
-            front3SuspensionLoadCell_N:
+            rear3SuspensionLoadCell_N:
                 ADC: ADC1_IN13
                 sensor: suspension_load_cell
                 samples_buffered: 2
-            front4SuspensionLoadCell_N:
+            rear4SuspensionLoadCell_N:
                 ADC: ADC1_IN10
                 sensor: suspension_load_cell
                 samples_buffered: 2
-            front5SuspensionLoadCell_N:
+            rear5SuspensionLoadCell_N:
                 ADC: ADC1_IN15
                 sensor: suspension_load_cell
                 samples_buffered: 2
-            front6SuspensionLoadCell_N:
+            rear6SuspensionLoadCell_N:
                 ADC: ADC1_IN7
                 sensor: suspension_load_cell
                 samples_buffered: 2
