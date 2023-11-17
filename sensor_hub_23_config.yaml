@@ -1,45 +1,32 @@
-
 module_name: "example_sensor_hub"
 
 buckets:
     bucket_0:
-        frequency_hz: 100
+        # NOTE: frequency will be converted to an integer number of ms for a delay
+        frequency_hz: 250
         parameters:
-            # Listed in order of their pins in the sensor hub board side connector
-            brakeTempFrontLeft_C:
+            # these must directly be a variable defined in GopherCAN
+            front1SuspensionLoadCell_N:
                 ADC: ADC1_IN11
-                sensor: brake_temp_sensor
+                sensor: suspension_load_cell
                 samples_buffered: 2
-            shockPosFrontLeft_mm:
+            front2SuspensionLoadCell_N:
                 ADC: ADC1_IN12
-                sensor: front_left_shock_pos
+                sensor: suspension_load_cell
                 samples_buffered: 2
-            brakeTempFrontRight_C:
+            front3SuspensionLoadCell_N:
                 ADC: ADC1_IN13
-                sensor: brake_temp_sensor
+                sensor: suspension_load_cell
                 samples_buffered: 2
-            shockPosFrontRight_mm:
+            front4SuspensionLoadCell_N:
                 ADC: ADC1_IN10
-                sensor: front_right_shock_pos
+                sensor: suspension_load_cell
                 samples_buffered: 2
-            brakePressureFront_psi:
+            front5SuspensionLoadCell_N:
                 ADC: ADC1_IN15
-                sensor: brake_pressure_sensor
+                sensor: suspension_load_cell
                 samples_buffered: 2
-            steeringAngle_deg:
-                ADC: ADC1_IN14
-                sensor: steering_angle_sensor
-                samples_buffered: 2
-            brakePressureRear_psi:
+            front6SuspensionLoadCell_N:
                 ADC: ADC1_IN7
-                sensor: brake_pressure_sensor
+                sensor: suspension_load_cell
                 samples_buffered: 2
-            wheelSpeedFrontRight_mph:
-                ADC: NON_ADC
-                sensor: NON_ADC
-                samples_buffered: 2
-            wheelSpeedFrontLeft_mph:
-                ADC: NON_ADC
-                sensor: NON_ADC
-                samples_buffered: 2
-
