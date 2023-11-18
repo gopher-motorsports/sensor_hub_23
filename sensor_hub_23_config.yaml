@@ -6,27 +6,27 @@ buckets:
         frequency_hz: 250
         parameters:
             # these must directly be a variable defined in GopherCAN
-            front1SuspensionLoadCell_N:
+            front1SuspensionLoadCell_V:
                 ADC: ADC1_IN11 # Connector 2 - FLR
-                sensor: suspension_load_cell
+                sensor:  full_raw_voltage_sensor # suspension_load_cell
                 samples_buffered: 2
-            front2SuspensionLoadCell_N:
+            front2SuspensionLoadCell_V:
                 ADC: ADC1_IN12 # Connector 3 - FLF
-                sensor: suspension_load_cell
+                sensor:  full_raw_voltage_sensor # suspension_load_cell
                 samples_buffered: 2
-            front3SuspensionLoadCell_N:
+            front3SuspensionLoadCell_V:
                 ADC: ADC1_IN13 # Connector 1 - FUR
-                sensor: suspension_load_cell
+                sensor:  full_raw_voltage_sensor # suspension_load_cell
                 samples_buffered: 2
-            front4SuspensionLoadCell_N:
+            front4SuspensionLoadCell_V:
                 ADC: ADC1_IN10 # Connector 6 - FP
-                sensor: suspension_load_cell
+                sensor:  full_raw_voltage_sensor # suspension_load_cell
                 samples_buffered: 2
-            front5SuspensionLoadCell_N:
+            front5SuspensionLoadCell_V:
                 ADC: ADC1_IN15 # Connector 5 - FUF
-                sensor: suspension_load_cell
+                sensor:  full_raw_voltage_sensor # suspension_load_cell
                 samples_buffered: 2
-            front6SuspensionLoadCell_N:
+            front6SuspensionLoadCell_V:
                 ADC: ADC1_IN7 # Connector 4 - FS
-                sensor: suspension_load_cell
+                sensor:  full_raw_voltage_sensor # suspension_load_cell
                 samples_buffered: 2
