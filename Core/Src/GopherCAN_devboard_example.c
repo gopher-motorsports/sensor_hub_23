@@ -57,35 +57,6 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	{
 		init_error();
 	}
-
-	if (setup_pulse_sensor_vss(
-			&htim2,
-			TIM_CHANNEL_4,
-			CONVERSION_RATIO,
-			&wheel_speed_front_right,
-			DMA_STOPPED_TIMEOUT_MS,
-			true,
-			LOW_PULSES_PER_SECOND,
-			HIGH_PULSES_PER_SECOND,
-			MIN_SAMPLES,
-			MAX_SAMPLES
-			) != NO_PULSE_SENSOR_ISSUES) {
-		init_error();
-	}
-	if (setup_pulse_sensor_vss(
-			&htim2,
-			TIM_CHANNEL_3,
-			CONVERSION_RATIO,
-			&wheel_speed_front_left,
-			DMA_STOPPED_TIMEOUT_MS,
-			true,
-			LOW_PULSES_PER_SECOND,
-			HIGH_PULSES_PER_SECOND,
-			MIN_SAMPLES,
-			MAX_SAMPLES
-			) != NO_PULSE_SENSOR_ISSUES) {
-		init_error();
-	}
 }
 
 
@@ -119,16 +90,6 @@ void main_loop()
 		last_print_hb = HAL_GetTick();
 		HAL_GPIO_TogglePin(HBeat_GPIO_Port, HBeat_Pin);
 	}
-
-	if (check_pulse_sensors() != NO_PULSE_SENSOR_ISSUES) {
-		error = true;
-		HAL_GPIO_WritePin(HBeat_GPIO_Port, HBeat_Pin, 1);
-	} else {
-		error = false;
-	}
-
-	update_and_queue_param_float(&wheelSpeedFrontRight_mph, wheel_speed_front_right);
-	update_and_queue_param_float(&wheelSpeedFrontLeft_mph, wheel_speed_front_left);
 
 	// DEBUG
 	static U8 last_led = 0;
