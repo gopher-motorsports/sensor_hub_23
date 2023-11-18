@@ -3,7 +3,7 @@ module_name: "example_sensor_hub"
 buckets:
     bucket_0:
         # NOTE: frequency will be converted to an integer number of ms for a delay
-        frequency_hz: 250
+        frequency_hz: 100
         parameters:
             # these must directly be a variable defined in GopherCAN
             rear1SuspensionLoadCell_V:
