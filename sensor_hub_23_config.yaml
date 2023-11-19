@@ -3,7 +3,7 @@ module_name: "example_sensor_hub"
 buckets:
     bucket_0:
         # NOTE: frequency will be converted to an integer number of ms for a delay
-        frequency_hz: 100
+        frequency_hz: 1000
         parameters:
             # these must directly be a variable defined in GopherCAN
             rear1SuspensionLoadCell_V:
@@ -22,11 +22,11 @@ buckets:
                 ADC: ADC1_IN10 # Connector 7 - RUR
                 sensor: full_raw_voltage_sensor # suspension_load_cell
                 samples_buffered: 2
-            rear5SuspensionLoadCell_V:
-                ADC: ADC1_IN15
-                sensor: full_raw_voltage_sensor # suspension_load_cell
-                samples_buffered: 2
-            rear6SuspensionLoadCell_V:
-                ADC: ADC1_IN7
-                sensor: full_raw_voltage_sensor # suspension_load_cell
-                samples_buffered: 2
+            # rear5SuspensionLoadCell_V:
+            #     ADC: ADC1_IN15
+            #     sensor: full_raw_voltage_sensor # suspension_load_cell
+            #     samples_buffered: 2
+            # rear6SuspensionLoadCell_V:
+            #     ADC: ADC1_IN7
+            #     sensor: full_raw_voltage_sensor # suspension_load_cell
+            #     samples_buffered: 2
