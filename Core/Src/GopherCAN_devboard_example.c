@@ -21,14 +21,14 @@ CAN_HandleTypeDef* example_hcan;
 extern TIM_HandleTypeDef htim2;
 
 // Use this to define what module this board will be
-#define THIS_MODULE_ID SH_F_ID
+#define THIS_MODULE_ID SH_1_ID
 #define PRINTF_HB_MS_BETWEEN 1000
 
 
 // some global variables for examples
 U8 last_button_state = 0;
-float wheel_speed_front_right;
-float wheel_speed_front_left;
+float flowRateWall;
+float flowRateLow;
 bool error = false;
 
 // the CAN callback function used in this example
@@ -62,7 +62,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			&htim2,
 			TIM_CHANNEL_4,
 			CONVERSION_RATIO,
-			&wheel_speed_front_right,
+			&flowRateWall,
 			DMA_STOPPED_TIMEOUT_MS,
 			true,
 			LOW_PULSES_PER_SECOND,
@@ -76,7 +76,7 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 			&htim2,
 			TIM_CHANNEL_3,
 			CONVERSION_RATIO,
-			&wheel_speed_front_left,
+			&flowRateLow,
 			DMA_STOPPED_TIMEOUT_MS,
 			true,
 			LOW_PULSES_PER_SECOND,
@@ -127,8 +127,8 @@ void main_loop()
 		error = false;
 	}
 
-	update_and_queue_param_float(&wheelSpeedFrontRight_mph, wheel_speed_front_right);
-	update_and_queue_param_float(&wheelSpeedFrontLeft_mph, wheel_speed_front_left);
+	update_and_queue_param_float(&flowRate1_GPerSec, flowRateWall);
+	update_and_queue_param_float(&flowRate2_GPerSec, flowRateLow);
 
 	// DEBUG
 	static U8 last_led = 0;
