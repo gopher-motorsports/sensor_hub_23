@@ -6,36 +6,36 @@ buckets:
         frequency_hz: 100
         parameters:
             # Listed in order of their pins in the sensor hub board side connector
-            pressure1_psi:
+            temp1_C:
                 ADC: ADC1_IN11
-                sensor: brake_temp_sensor
+                sensor: temp_sensor
                 samples_buffered: 2
-            pressure2_psi:
+            temp2_C:
                 ADC: ADC1_IN12
-                sensor: front_left_shock_pos
+                sensor: temp_sensor
                 samples_buffered: 2
-            pressure3_psi:
+            temp3_C:
                 ADC: ADC1_IN13
-                sensor: brake_temp_sensor
+                sensor: temp_sensor
                 samples_buffered: 2
-            pressure4_psi:
+            temp4_C:
                 ADC: ADC1_IN10
-                sensor: front_right_shock_pos
+                sensor: temp_sensor
                 samples_buffered: 2
-            pressure5_psi:
+            temp5_C:
                 ADC: ADC1_IN15
-                sensor: brake_pressure_sensor
+                sensor: temp_sensor
                 samples_buffered: 2
-            pressure6_psi:
+            temp6_C:
                 ADC: ADC1_IN7
-                sensor: steering_angle_sensor
+                sensor: temp_sensor
                 samples_buffered: 2
-            flowRate1_GPerSec:
-                ADC: NON_ADC
-                sensor: NON_ADC
+            temp7_C:
+                ADC: ADC1_IN6
+                sensor: temp_sensor
                 samples_buffered: 2
-            flowRate2_GPerSec:
-                ADC: NON_ADC
-                sensor: NON_ADC
+            temp8_C:
+                ADC: ADC1_IN14
+                sensor: temp_sensor
                 samples_buffered: 2
 
