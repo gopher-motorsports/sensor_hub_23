@@ -21,7 +21,7 @@ CAN_HandleTypeDef* example_hcan;
 extern TIM_HandleTypeDef htim2;
 
 // Use this to define what module this board will be
-#define THIS_MODULE_ID SH_1_ID
+#define THIS_MODULE_ID SH_PRESSURES_ID
 #define PRINTF_HB_MS_BETWEEN 1000
 
 

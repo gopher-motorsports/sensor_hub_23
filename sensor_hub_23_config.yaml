@@ -8,27 +8,27 @@ buckets:
             # Listed in order of their pins in the sensor hub board side connector
             pressure1_psi:
                 ADC: ADC1_IN11
-                sensor: brake_temp_sensor
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
             pressure2_psi:
                 ADC: ADC1_IN12
-                sensor: front_left_shock_pos
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
             pressure3_psi:
                 ADC: ADC1_IN13
-                sensor: brake_temp_sensor
+                sensor: combined_pressure_sensor
                 samples_buffered: 2
             pressure4_psi:
                 ADC: ADC1_IN10
-                sensor: front_right_shock_pos
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
             pressure5_psi:
                 ADC: ADC1_IN15
-                sensor: brake_pressure_sensor
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
             pressure6_psi:
                 ADC: ADC1_IN7
-                sensor: steering_angle_sensor
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
             flowRate1_GPerSec:
                 ADC: NON_ADC
