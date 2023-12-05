@@ -30,12 +30,4 @@ buckets:
                 ADC: ADC1_IN7
                 sensor: pressure_sensor_absolute
                 samples_buffered: 2
-            flowRate1_GPerSec:
-                ADC: NON_ADC
-                sensor: NON_ADC
-                samples_buffered: 2
-            flowRate2_GPerSec:
-                ADC: NON_ADC
-                sensor: NON_ADC
-                samples_buffered: 2
 
