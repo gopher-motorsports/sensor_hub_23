@@ -28,6 +28,8 @@ extern TIM_HandleTypeDef htim2;
 // some global variables for examples
 U8 last_button_state = 0;
 bool error = false;
+float flowRateWall;
+float flowRateLow;
 
 // the CAN callback function used in this example
 static void change_led_state(U8 sender, void* UNUSED_LOCAL_PARAM, U8 remote_param, U8 UNUSED1, U8 UNUSED2, U8 UNUSED3);
@@ -53,6 +55,35 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 	// will be run whenever this can command is sent to the module
 	if (add_custom_can_func(SET_LED_STATE, &change_led_state, TRUE, NULL))
 	{
+		init_error();
+	}
+
+	if (setup_pulse_sensor_vss(
+			&htim2,
+			TIM_CHANNEL_4,
+			CONVERSION_RATIO,
+			&flowRateWall,
+			DMA_STOPPED_TIMEOUT_MS,
+			true,
+			LOW_PULSES_PER_SECOND,
+			HIGH_PULSES_PER_SECOND,
+			MIN_SAMPLES,
+			MAX_SAMPLES
+			) != NO_PULSE_SENSOR_ISSUES) {
+		init_error();
+	}
+	if (setup_pulse_sensor_vss(
+			&htim2,
+			TIM_CHANNEL_3,
+			CONVERSION_RATIO,
+			&flowRateLow,
+			DMA_STOPPED_TIMEOUT_MS,
+			true,
+			LOW_PULSES_PER_SECOND,
+			HIGH_PULSES_PER_SECOND,
+			MIN_SAMPLES,
+			MAX_SAMPLES
+			) != NO_PULSE_SENSOR_ISSUES) {
 		init_error();
 	}
 }
@@ -88,6 +119,16 @@ void main_loop()
 		last_print_hb = HAL_GetTick();
 		HAL_GPIO_TogglePin(HBeat_GPIO_Port, HBeat_Pin);
 	}
+
+	if (check_pulse_sensors() != NO_PULSE_SENSOR_ISSUES) {
+		error = true;
+		HAL_GPIO_WritePin(HBeat_GPIO_Port, HBeat_Pin, 1);
+	} else {
+		error = false;
+	}
+
+	update_and_queue_param_float(&flowRate1_GPerSec, flowRateWall);
+	update_and_queue_param_float(&flowRate2_GPerSec, flowRateLow);
 
 	// DEBUG
 	static U8 last_led = 0;
