@@ -7,7 +7,7 @@
 #include "pulse_sensor.h"
 #include "gopher_sense.h"
 
-#define CONVERSION_RATIO 4.975 // Conversion ration from frequency of pulses to GPerSec
+#define CONVERSION_RATIO 1 // Conversion ration from frequency of pulses to GPerSec
 #define HDMA_CHANNEL_4 2 // hdma value dma is going to use
 #define DMA_STOPPED_TIMEOUT_MS 1000
 #define LOW_PULSES_PER_SECOND 1 // 15 mph, when we only take 5 samples per dma check
@@ -111,7 +111,7 @@ void main_loop()
 		error = false;
 	}
 
-	update_and_queue_param_float(&flowRate1_GPerSec, flowRateWall);
+	update_and_queue_param_float(&flowRate1_Hz, flowRateWall);
 
 	// DEBUG
 	static U8 last_led = 0;
