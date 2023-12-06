@@ -16,11 +16,11 @@ buckets:
                 samples_buffered: 2
             pressure3_psi:
                 ADC: ADC1_IN13
-                sensor: combined_pressure_sensor
+                sensor: pressure_sensor_absolute
                 samples_buffered: 2
             pressure4_psi:
                 ADC: ADC1_IN10
-                sensor: pressure_sensor_absolute
+                sensor: combined_pressure_sensor
                 samples_buffered: 2
             pressure5_psi:
                 ADC: ADC1_IN15
