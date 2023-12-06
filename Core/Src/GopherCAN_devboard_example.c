@@ -7,7 +7,7 @@
 #include "pulse_sensor.h"
 #include "gopher_sense.h"
 
-#define CONVERSION_RATIO (float)CALCULATE_MPH_CONVERSION_RATIO(30.0f, 7.8f) // Conversion ration from frequency of pulses to mph
+#define CONVERSION_RATIO 4.975 // Conversion ration from frequency of pulses to GPerSec
 #define HDMA_CHANNEL_4 2 // hdma value dma is going to use
 #define HDMA_CHANNEL_3 3 // TODO: This is prob wrong, verify
 #define DMA_STOPPED_TIMEOUT_MS 1000
@@ -28,7 +28,7 @@ extern TIM_HandleTypeDef htim2;
 // some global variables for examples
 U8 last_button_state = 0;
 //float flowRateWall;
-//float flowRateLow;
+float flowRateLow;
 bool error = false;
 
 // the CAN callback function used in this example
@@ -58,20 +58,20 @@ void init(CAN_HandleTypeDef* hcan_ptr)
 		init_error();
 	}
 
-//	if (setup_pulse_sensor_vss(
-//			&htim2,
-//			TIM_CHANNEL_4,
-//			CONVERSION_RATIO,
-//			&flowRateWall,
-//			DMA_STOPPED_TIMEOUT_MS,
-//			true,
-//			LOW_PULSES_PER_SECOND,
-//			HIGH_PULSES_PER_SECOND,
-//			MIN_SAMPLES,
-//			MAX_SAMPLES
-//			) != NO_PULSE_SENSOR_ISSUES) {
-//		init_error();
-//	}
+	if (setup_pulse_sensor_vss(
+			&htim2,
+			TIM_CHANNEL_4,
+			CONVERSION_RATIO,
+			&flowRateLow,
+			DMA_STOPPED_TIMEOUT_MS,
+			true,
+			LOW_PULSES_PER_SECOND,
+			HIGH_PULSES_PER_SECOND,
+			MIN_SAMPLES,
+			MAX_SAMPLES
+			) != NO_PULSE_SENSOR_ISSUES) {
+		init_error();
+	}
 //	if (setup_pulse_sensor_vss(
 //			&htim2,
 //			TIM_CHANNEL_3,
@@ -120,15 +120,15 @@ void main_loop()
 		HAL_GPIO_TogglePin(HBeat_GPIO_Port, HBeat_Pin);
 	}
 
-//	if (check_pulse_sensors() != NO_PULSE_SENSOR_ISSUES) {
-//		error = true;
-//		HAL_GPIO_WritePin(HBeat_GPIO_Port, HBeat_Pin, 1);
-//	} else {
-//		error = false;
-//	}
+	if (check_pulse_sensors() != NO_PULSE_SENSOR_ISSUES) {
+		error = true;
+		HAL_GPIO_WritePin(HBeat_GPIO_Port, HBeat_Pin, 1);
+	} else {
+		error = false;
+	}
 
 //	update_and_queue_param_float(&flowRate1_GPerSec, flowRateWall);
-//	update_and_queue_param_float(&flowRate2_GPerSec, flowRateLow);
+	update_and_queue_param_float(&flowRate2_Hz, flowRateLow);
 
 	// DEBUG
 	static U8 last_led = 0;
