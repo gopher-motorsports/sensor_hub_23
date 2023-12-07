@@ -500,20 +500,53 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GSense_Pin|HBeat_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, Pullup_1_Pin|Pullup_2_Pin|Pullup_3_Pin|PU10_Pin
+                          |PU9_Pin|PU8_Pin|PU7_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : GSense_Pin HBeat_Pin */
-  GPIO_InitStruct.Pin = GSense_Pin|HBeat_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, GSense_Pin|HBeat_Pin|PU12_Pin|PU11_Pin
+                          |Pu5_Pin|PU4_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(PU6_GPIO_Port, PU6_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : Pullup_1_Pin Pullup_2_Pin Pullup_3_Pin PU10_Pin
+                           PU9_Pin PU8_Pin PU7_Pin */
+  GPIO_InitStruct.Pin = Pullup_1_Pin|Pullup_2_Pin|Pullup_3_Pin|PU10_Pin
+                          |PU9_Pin|PU8_Pin|PU7_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : GSense_Pin HBeat_Pin PU12_Pin PU11_Pin
+                           Pu5_Pin PU4_Pin */
+  GPIO_InitStruct.Pin = GSense_Pin|HBeat_Pin|PU12_Pin|PU11_Pin
+                          |Pu5_Pin|PU4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PU6_Pin */
+  GPIO_InitStruct.Pin = PU6_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(PU6_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : MCU_3v3_Swithc_Fault_Pin */
+  GPIO_InitStruct.Pin = MCU_3v3_Swithc_Fault_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(MCU_3v3_Swithc_Fault_GPIO_Port, &GPIO_InitStruct);
 
 }
 
