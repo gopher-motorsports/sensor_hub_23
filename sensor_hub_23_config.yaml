@@ -10,35 +10,35 @@ buckets:
             # Listed in order of their pins in the sensor hub board side connector
             voltageSensor1:
                 ADC: ADC1_IN11
-                sensor: exhaust_temp_sensor
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
             voltageSensor2:
                 ADC: ADC1_IN12
-                sensor: linear_pos_sensor_50
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
             voltageSensor3:
                 ADC: ADC1_IN13
-                sensor: temp_sensor
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
             voltageSensor4:
                 ADC: ADC1_IN10
-                sensor: temp_sensor
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
             voltageSensor5:
                 ADC: ADC1_IN15
-                sensor: pressure_sensor_absolute
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
             voltageSensor6:
                 ADC: ADC1_IN7       # pin 6 -> ADC1_IN7 is not currently working correctly
-                sensor: differential_pressure_sensor
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
             voltageSensor7:
-                ADC: NON_ADC
-                sensor: NON_ADC
+                ADC: ADC1_IN6
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
             voltageSensor8:
-                ADC: NON_ADC
-                sensor: NON_ADC
+                ADC: ADC1_IN14
+                sensor: full_raw_voltage_sensor
                 samples_buffered: 2
 
 
