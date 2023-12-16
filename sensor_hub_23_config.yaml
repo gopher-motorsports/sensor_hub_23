@@ -4,7 +4,7 @@ module_name: "example_sensor_hub"
 buckets:
     bucket_0:
         # NOTE: frequency will be converted to an integer number of ms for a delay
-        frequency_hz: 100
+        frequency_hz: 1000
         parameters:
             # these must directly be a variable defined in GopherCAN
             # Listed in order of their pins in the sensor hub board side connector
