@@ -3,7 +3,7 @@ module_name: "example_sensor_hub"
 
 buckets:
     bucket_0:
-        frequency_hz: 100
+        frequency_hz: 1000
         parameters:
             # Listed in order of their pins in the sensor hub board side connector
             pressure1_psi:
