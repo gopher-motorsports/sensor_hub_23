@@ -4,41 +4,41 @@ module_name: "example_sensor_hub"
 buckets:
     bucket_0:
         # NOTE: frequency will be converted to an integer number of ms for a delay
-        frequency_hz: 100
+        frequency_hz: 1000
         parameters:
             # these must directly be a variable defined in GopherCAN
             # Listed in order of their pins in the sensor hub board side connector
-            voltageSensor1:
-                ADC: ADC1_IN11
-                sensor: full_raw_voltage_sensor
-                samples_buffered: 2
-            voltageSensor2:
-                ADC: ADC1_IN12
-                sensor: full_raw_voltage_sensor
-                samples_buffered: 2
-            voltageSensor3:
+            # voltageSensor1:
+            #     ADC: ADC1_IN11
+            #     sensor: full_raw_voltage_sensor
+            #     samples_buffered: 2
+            # voltageSensor2:
+            #     ADC: ADC1_IN12
+            #     sensor: full_raw_voltage_sensor
+            #     samples_buffered: 2
+            loadcell_voltage:
                 ADC: ADC1_IN13
                 sensor: full_raw_voltage_sensor
                 samples_buffered: 2
-            voltageSensor4:
-                ADC: ADC1_IN10
-                sensor: full_raw_voltage_sensor
-                samples_buffered: 2
-            voltageSensor5:
-                ADC: ADC1_IN15
-                sensor: full_raw_voltage_sensor
-                samples_buffered: 2
-            voltageSensor6:
-                ADC: ADC1_IN7       # pin 6 -> ADC1_IN7 is not currently working correctly
-                sensor: full_raw_voltage_sensor
-                samples_buffered: 2
-            voltageSensor7:
-                ADC: ADC1_IN6
-                sensor: full_raw_voltage_sensor
-                samples_buffered: 2
-            voltageSensor8:
-                ADC: ADC1_IN14
-                sensor: full_raw_voltage_sensor
-                samples_buffered: 2
+            # voltageSensor4:
+            #     ADC: ADC1_IN10
+            #     sensor: full_raw_voltage_sensor
+            #     samples_buffered: 2
+            # voltageSensor5:
+            #     ADC: ADC1_IN15
+            #     sensor: full_raw_voltage_sensor
+            #     samples_buffered: 2
+            # voltageSensor6:
+            #     ADC: ADC1_IN7       # pin 6 -> ADC1_IN7 is not currently working correctly
+            #     sensor: full_raw_voltage_sensor
+            #     samples_buffered: 2
+            # voltageSensor7:
+            #     ADC: ADC1_IN6
+            #     sensor: full_raw_voltage_sensor
+            #     samples_buffered: 2
+            # voltageSensor8:
+            #     ADC: ADC1_IN14
+            #     sensor: full_raw_voltage_sensor
+            #     samples_buffered: 2
 
 
