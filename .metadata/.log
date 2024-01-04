@@ -1,0 +1,26 @@
+!SESSION 2024-01-03 13:40:16.363 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/jansiranibalasubramanian/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/jansiranibalasubramanian/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-01-03 13:40:35.678
+!MESSAGE Log4j2 initialized with config file /Users/jansiranibalasubramanian/Documents/GitHub/sensor_hub_24/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-01-03 13:40:40.377
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-01-03 13:41:32.524 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/jansiranibalasubramanian/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/jansiranibalasubramanian/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-01-03 13:41:53.823
+!MESSAGE Log4j2 initialized with config file /Users/jansiranibalasubramanian/Documents/GitHub/sensor_hub_24/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-01-03 13:41:58.552
+!MESSAGE Started RMI Server, listening on port 41337
